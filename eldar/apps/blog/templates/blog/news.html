@@ -1,0 +1,49 @@
+{% extends 'base_blog.html' %}
+{% load thumbnail %}
+
+
+    {% block title %}
+    <title>SINGLE_POST</title>
+    {% endblock title %}
+
+ {% block links %}
+    <li><a href="{% url 'blog:home'%}" style="text-decoration:none; color:green">Blog</a></li>
+    <li>Single Post</li>
+ {% endblock links %}
+
+{% block head %}
+
+{% endblock head %}
+
+
+{% block body %}
+  <div class="para">
+
+    <h2>Js {{title.title}}</h2>
+      {% thumbnail title.image "5000x2000" crop as ci %}
+      <img src="{{ci.url}}" width="250px" height="150px">
+      <p>{{title.text|safe}}</p>
+  </div>
+  <form method="POST" action="">
+      {% csrf_token %}
+      Name:
+      <br>
+      <input type="text" name="fname" size="30">
+      <br><br>
+      Message:
+      <br>
+      <textarea rows="10" cols="40" name="message"></textarea>
+      <br><br>
+      <input type="submit" value="submit">
+  </form>
+<br><br>
+{% for comment in comment %}
+{{comment.message}}<br>
+{% endfor %}
+
+<hr class="line2">
+<div class="copyright">
+    <h4>© ASIO BRENDA</h4>
+  </div>
+
+{% endblock body %}

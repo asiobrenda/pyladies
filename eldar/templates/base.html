@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'styling/styles1.css' %}"   rel="stylesheet">
+    {% block links %}{% endblock links %}
+    {% block title %}
+    <title>BASE</title>
+    {% endblock title%}
+</head>
+<body>
+<br>
+<br>
+<div class="topnav">
+   {% block toolbar %}
+  <a class="active">Home</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <input type="text" placeholder="Search..">
+ {% endblock toolbar %}
+</div>
+
+{% block body %}
+<div style="padding-left:16px">
+  <h2>Responsive Search Bar</h2>
+  <p>Navigation bar with a search box inside of it.</p>
+  <p>Resize the browser window to see the responsive effect.</p>
+  <p>For more examples on how to add a submit button and icon inside the search bar, go back to the tutorial.</p>
+</div>
+
+{% endblock body %}
+</body>
+</html>

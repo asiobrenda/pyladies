@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static  'tabs/styles/tab.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>Title</title>
+</head>
+<body id="demo">
+ <h1 style="text-align: center; color:red; margin-top:70px">{{varx}}</h1>
+<div id="content_id">
+</div>
+
+<script>
+</script>
+
+<script src="{% static 'js/tabs22.js' %}"></script>
+<script src="{% static 'js/js.cookie.min.js' %}"></script>
+<script type="text/javascript">
+
+     var csrftoken = Cookies.get('csrftoken');
+            function csrfSafeMethod(method) {
+              // these HTTP methods do not require CSRF protection
+              return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+            $.ajaxSetup({
+              beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                  xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+              }
+            });
+    var body_id = document.getElementById('demo');
+    var add_tab_url = "{% url 'tabs:add_tab'%}";
+    var get_data_ = "{% url 'tabs:get_data'%}";
+    var delete_tab = "{% url 'tabs:delete_tab'%}";
+    var save_content = "{% url 'tabs:saveContent'%}";
+    var save_btn= "{% url 'tabs:save_btn'%}";
+    var saved_btn= "{% url 'tabs:saved_btn'%}";
+    //alert(save_btn)
+
+    dic = {'body_id_': body_id, 'add_tab_url_': add_tab_url, 'get_data_': get_data_, 'delete_tab_':delete_tab,
+    'save_content_':save_content, 'save_btn_': save_btn, 'saved_btn_':saved_btn }
+    //alert(111)
+    //alert(JSON.stringify(dic))
+
+       $(document).ready(function () {
+          var manager = new Admin(dic);
+          manager.create_elements(dic);
+
+      });
+
+
+    </script>
+
+
+
+</body>

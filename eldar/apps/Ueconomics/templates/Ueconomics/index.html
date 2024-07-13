@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static  'ueconomics/style.css' %}">
+    <link href="{% static 'styling/cities.css'%}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <title>Title</title>
+</head>
+<body>
+ <h1 style="text-align: center; color:red; margin-top:70px">{{varx}}</h1>
+
+ <br>
+<button  style="cursor:pointer" onclick="addTab(event)" id="url" data_path="{% url 'Ueconomics:Tabs' %}">Add tab</button>
+ <button  style="cursor:pointer" onclick="deleteTab(event)">Delete tab</button>
+<br>
+<br>
+ <div class="tab" id="tab_container" url_path="{% url 'Ueconomics:Get_data' %}">
+</div>
+
+
+<div id="content_id">
+</div>
+
+ <p id="demo"></p>
+<script src="{% static 'js/js.cookie.min.js' %}"></script>
+<script src="{% static 'js/cities1.js' %}"></script>
+<script type="text/javascript">
+
+     var csrftoken = Cookies.get('csrftoken');
+            function csrfSafeMethod(method) {
+              // these HTTP methods do not require CSRF protection
+              return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+            $.ajaxSetup({
+              beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                  xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+              }
+            });
+
+  $(document).ready(function () {
+        get_data()
+  });
+    </script>
+
+</body>
+</html>

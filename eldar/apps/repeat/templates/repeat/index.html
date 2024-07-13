@@ -1,0 +1,36 @@
+{% extends 'base_repeat.html' %}
+
+{% load static %}
+
+{% block toolbar %}
+<a class="active" href="{% url 'echen:Home' %}">Home</a>
+{% endblock toolbar %}
+
+
+{% block links %}
+ <link href="{% static 'styling/styles1.css' %}"   rel="stylesheet">
+{% endblock links %}
+
+
+
+{% block body %}
+<h1>{{heading}}</h1>
+
+<h3>
+ <a href="{% url 'repeat:Tables' %}">Click here!</a>
+</h3>
+
+<hr>
+<br>
+
+{% for a in author %}
+<a href="{% url 'repeat:author' a.id %}">
+<ol type="1">
+ <li>
+  {{a.name }}, {{a.gender}}
+ </li>
+</ol>
+</a>
+{% endfor %}
+
+{% endblock body %}

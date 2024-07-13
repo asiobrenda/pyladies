@@ -1,0 +1,38 @@
+{% extends 'base_repeat.html' %}
+
+{% load static %}
+
+{% block toolbar %}
+<a class="active" href="{% url 'echen:Home' %}">Home</a>
+{% endblock toolbar %}
+
+
+{% block links %}
+ <link href="{% static 'styling/styles1.css' %}"   rel="stylesheet">
+{% endblock links %}
+
+
+
+{% block body %}
+<br>
+<br>
+<br>
+<h3 style="margin-left: 20px">{{view}} {{member}}</h3>
+<br>
+<br>
+<table>
+    <tr>
+        <th>NAME</th><td>{{member}}</td>
+    </tr>
+</table>
+<br>
+<br>
+<a href="{% url 'repeat:Tables' %}">
+        Back
+    </a>
+<br>
+<br>
+<br>
+<a href="">delete</a>
+
+{% endblock body %}

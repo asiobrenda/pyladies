@@ -1,0 +1,55 @@
+{% extends 'base_echen.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>ECHEN1</title>
+{% endblock title %}
+
+{% load thumbnail %}
+
+{% block toolbar %}
+ <a class="active">Home</a>
+ <a href="{% url 'repeat:Repeat' %}">Repeat</a>
+{% endblock toolbar %}
+
+
+{% block body %}
+ <h1>CREATE CLIENT</h1>
+
+<br>
+<br>
+<table>
+<h1>Client Details</h1>
+<tr>
+<th>ID:</th>
+<td>{{object.id}}</td>
+<tr>
+ <br>
+ <br>
+ <tr>
+<th>NAME:</th>
+<td>{{object.name}}</td>
+<tr>
+ <br>
+ <br>
+ <tr>
+<th>DESCRIPTION:</th>
+<td>{{object.description}}</td>
+<tr>
+ <br>
+ <br>
+ <tr>
+<th>IMAGE:</th>
+<td>
+ {% thumbnail object.image "5000x2000" crop as ci %}
+ <img src="{{ci.url}}" width="250px" height="150px">
+</td>
+<tr>
+<!-- Other fields -->
+</table>
+
+<a href="{% url 'echen:Home' %}">back</a>
+
+
+{% endblock body %}

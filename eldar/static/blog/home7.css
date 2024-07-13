@@ -1,0 +1,180 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.navbar {
+   margin-top: 35px;
+   padding-top:10px;
+}
+
+.navbar ul {
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between; /* Adjust to distribute space */
+  justify-content: center; /* Center items vertically */
+  width: calc(100% - -30px); /* Adjust the width to create space for the button */
+}
+
+.navbar li{
+    margin: 0; /* Reset margin */
+    padding: 0 15px; /* Adjust padding for list items */
+    text-decoration: none;
+    color:darkgreen;
+    font-family: sans-serif;
+    list-style: none;
+}
+
+.navbar .name {
+  margin-left: 230px;
+  list-style: none;
+  font-size:45px;
+  font-style: italic;
+  font-family: san-serif;
+  margin-bottom: -70px;
+  margin-top: 20px;
+  font-weight: 1000px;
+
+}
+
+.navbar .socials{
+   margin-left: 1000px;
+
+}
+
+.line {
+  border-color: orange;
+}
+
+
+.tech {
+   margin-left: 300px;
+   margin-top: 150px;
+}
+
+.tech h2{
+     font-size: 50px;
+     color: green;
+     font-family: sans-serif;
+}
+
+.tech p{
+  color: darkorange;
+   font-family: sans-serif;
+}
+
+.line1 {
+  border-color: orange;
+  margin-top: 140px;
+}
+
+.languages {
+    margin-top: 25%;
+    margin-left: 20%;
+}
+
+.languages h3{
+    color: darkgreen;
+    font-family: sans-serif;
+}
+
+.languages {
+    font-size: 18px;
+    font-family: sans-serif;
+
+}
+
+.lang {
+    border: none;
+   border-left: 1.7px solid orange;
+   margin-left: 160px;
+   height:500px;
+   margin-top:-5%;
+
+}
+
+.languages .text{
+    margin-left: 200px;
+    margin-top: -44%;
+}
+
+.languages .text a{
+  text-decoration: none;
+  color: black;
+  font-size: 14.5px;
+
+}
+
+.text .title a{
+   color:green;
+}
+
+.para h2{
+     text-align: center;
+     color:green;
+     font-size: 35px;
+}
+
+.para img{
+     margin-left: 600px;
+     border-radius: 20px;
+     margin-top:30px;
+}
+
+.para p{
+   margin-left: 360px;
+  font-family: sans-serif;
+  font-size: 14px;
+  margin-top: 30px;
+  line-space: 1;
+}
+
+#twi {
+   margin-left: 1000px;
+   padding: 10px;
+   font-size: 16px;
+   text-decoration: none;
+   color:darkorange;
+}
+
+#fb {
+  padding: 10px;
+   font-size: 16px;
+   text-decoration: none;
+   color:darkorange;
+}
+
+#insta {
+  padding: 10px;
+   font-size: 16px;
+   text-decoration: none;
+   color:darkorange;
+}
+
+#lkd {
+   padding: 10px;
+   font-size: 16px;
+   text-decoration: none;
+   color:darkorange;
+}
+
+
+.line2 {
+  border-color: orange;
+  margin-top: 80px;
+}
+
+.copyright {
+    margin-left: 700px;
+    height: 100px;
+}
+
+.copyright h4{
+   padding-top: 20px;
+   opacity: 0.5;
+   font-size: 13px;
+}

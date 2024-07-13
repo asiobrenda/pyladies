@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.33.1/plotly.min.js"></script>
+    <title>Title</title>
+    <style>
+        table, td, th {
+          border: 1px solid #ddd;
+          text-align: left;
+        }
+
+        table {
+          border-collapse: collapse;
+          width: 60%;
+        }
+        th{
+            background-color: coral;
+        }
+
+        th, td {
+          padding: 15px;
+          border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+           background-color: #ddd;
+           cursor: pointer;
+
+           }
+
+</style>
+</head>
+<body>
+ <h1 style="text-align: center; color:blue; margin-top:70px">{{varx}}</h1>
+<br>
+<br>
+  <div id="myChart" style="height: 500px;
+    width: 440px;
+    box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.35);
+    border: 1px solid white;
+    margin-left: 1000px;
+    z-index: 500px;
+    position: fixed;
+    margin-top: 40px;">
+ </div>
+ <br>
+ <br>
+<table>
+    <tr>
+        <th>COUNTY</th>
+        <th>2012</th><th>2013</th><th>2014</th><th>2015</th><th>2016</th><th>2017</th>
+    </tr>
+    {% for c in county %}
+    <tr>
+        <td id="{{c.id}}_{{c.country}}" onclick="get_chart_data(event)">{{c.country }}</td>
+        {% for v in c.county_data.all %}
+        <td id="{{c.id}}_{{c.country}}_{{v.years}}">{{v.value_data}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+<script>
+get_chart_data = function(event) {
+   var event_ = event.target;
+   //alert(111)
+   //alert(event_)
+   var title = event_.innerHTML;
+   //alert(title)
+   var id = event_.getAttribute('id')
+   alert(id)
+   var data = event_.parentNode;
+   //alert(data.outerHTML);
+   var country = id.split('_')[0] + '_' + title
+   alert(country)
+
+   var district_ = [];
+   var y = [];
+
+   for (var i = 2012; i < 2018; i++) {
+        district = document.getElementById(country+ '_' + i).innerHTML;
+        //alert(444)
+        //alert(district)
+        district_.push(district)
+        y.push(i)
+    }
+   //alert(district_)
+   //alert(y)
+   get_line_data(title, district_,y)
+
+
+}
+
+function get_line_data(title, district_, y) {
+var district = {
+  x: y,
+  y: district_,
+  name: 'District',
+  line: {
+    color: 'rgb(128, 0, 128)',
+    width: 1
+  }
+};
+
+var data = [district];
+
+ var layout = {
+        title: title,
+    };
+
+Plotly.newPlot('myChart', data, layout);
+
+}
+</script>
+</body>
+</html>

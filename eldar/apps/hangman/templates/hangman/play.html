@@ -1,0 +1,65 @@
+{% extends 'base_hangman.html' %}
+{% load static %}
+
+ {% block navbar %}
+ <li>Home</li>
+ {% endblock navbar %}
+
+ {% block links %}
+
+    <link href="{% static 'hangman/play.css' %}" rel="stylesheet">
+  {% endblock links %}
+
+
+
+{% block body %}
+  <h3>Start playing  game!</h3>
+  <h4>Hangman</h4>
+  <form method="POST" action="">
+      {% csrf_token %}
+  <p>Enter a letter:</p>
+      <br>
+      <input type="text" maxlength="1" name="letter">
+      <br><br>
+      <button type="submit">Submit</button>
+  </form>
+ <br><br>
+ <h4>Attempts left: {{game.attempts_left}}</h4>
+<h4>Guessed word: {{game.guessed_word }}</h4>
+<p class="display_word">
+{% for letter in game.words %}
+  {% if letter|lower  in game.guessed_words|lower %}
+      {{letter}}
+      {% else %}
+         {% if game.attempts_left == 0 %}
+           {{letter}}
+      {% else %}
+         -
+    {% endif %}
+  {% endif %}
+{% endfor %}
+</p>
+
+<div class="image">
+    {% if game.attempts_left == 6 %}
+    <img src="{% static 'hangman/images/hang0.gif' %}">
+    {% elif game.attempts_left == 5  %}
+    <img src="{% static 'hangman/images/hang2.gif' %}">
+    {% elif game.attempts_left == 4  %}
+    <img src="{% static 'hangman/images/hang4.gif' %}">
+    {% elif game.attempts_left == 3  %}
+    <img src="{% static 'hangman/images/hang6.gif' %}">
+    {% elif game.attempts_left == 2  %}
+    <img src="{% static 'hangman/images/hang8.gif' %}">
+    {% elif game.attempts_left == 1  %}
+    <img src="{% static 'hangman/images/hang10.gif' %}">
+    {% elif game.attempts_left == 0  %}
+     <img src="{% static 'hangman/images/hang10.gif' %}">
+    {% else %}
+     <img src="{% static 'hangman/images/hang10.gif' %}">
+    {% endif %}
+</div>
+<p class="feed">{{feedback}}</p>
+
+<p class="again"><a href="{% url 'hangman:home' %}">Play again</a></p>
+{% endblock body %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    {%block title %}
+    <title>HANGMAN</title>
+    {% endblock title %}
+
+
+    <link href="{% static 'hangman/home.css' %}" rel="stylesheet">
+    {% block links %}{% endblock links %}
+</head>
+<body>
+  <nav class="navbar">
+
+      <li class="game">HangMangame</li>
+
+          <ul>
+              {% block navbar %}
+              <li>Home</li>
+              <li>Play</li>
+              <li>Invite your friend</li>
+
+       {% endblock navbar %}
+          </ul>
+  </nav>
+  <br>
+{% block body %}
+{% endblock body %}
+
+</body>
+</html>

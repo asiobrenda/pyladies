@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static  'ueconomics/style.css' %}">
+    <link rel="stylesheet" href="{% static  'styling/table3.css' %}">
+    <link rel="stylesheet" href="{% static  'styling/chart.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.33.1/plotly.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+ <h1 style="text-align: center; color:red; margin-top:70px">{{varx}}</h1>
+<br>
+<br>
+ <div id="myChart">
+ </div>
+ <button style="cursor:pointer" onclick="change_chart_type(event, type='bars')">Bars</button>
+ <button style="cursor:pointer" onclick="change_chart_type(event, type='lines')">Lines</button>
+ <br>
+ <br>
+<div class="tab">
+    {% for s in source %}
+      <button class="tablinks" onclick="openSource(event, '{{s.type}}')" id="defaultOpen">{{s.type}}</button>
+    {% endfor %}
+</div>
+
+ {% for source in source %}
+<div id="{{source.type}}" class="tabcontent" onclick="get_chart_data(event)">
+  <h3>{{source.type}}</h3>
+      <table>
+          <tr>
+              <th>SITC2</th>
+              <th>DESCRIPTION</th>
+              {% for y in years|slice:":5"%}
+              <th>{{y}}</th>
+              {% endfor %}
+          </tr>
+       {% for p in product %}
+          <tr id="{{p.id}}">
+              <td>{{p.sitc2}}</td>
+              <td id="{{source}}_{{p.id}}">{{p.description}}</td>
+              {% for v in p.product_year_data.all %}
+              {% if v.source == source %}
+              <td id="{{source}}_{{p.id}}_{{v.year}}">{{v.values}}</td>
+                  {% endif %}
+              {% endfor %}
+          </tr>
+          {% endfor %}
+
+      </table>
+</div>
+ {% endfor %}
+ <script src="{% static 'js_file/tabcontent5.js' %}"></script>
+ <script src="{% static 'js_file/chart3.js' %}"></script>
+
+</body>
+</html>

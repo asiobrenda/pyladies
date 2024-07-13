@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        .tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+    </style>
+</head>
+<body id="demo">
+ <h1 style="text-align: center; color:red; margin-top:70px">{{varx}}</h1>
+ <br>
+<button style="cursor:pointer" onclick="get_tab_name(event)">Add tab</button>
+ <br>
+ <br>
+<div class="tab">
+    {% for c in city %}
+  <button class="tablinks" onclick="openCity(event, '{{c.color}}')" tab_id="{{c.id}}">{{c.city_name}}</button>
+    {% endfor %}
+</div>
+
+ {% for tab in city %}
+<div id="{{tab.id}}" class="tabcontent">
+  <h3>{{tab.city_name}}</h3>
+  <p>{{tab.description}}</p>
+</div>
+ {% endfor %}
+
+<script>
+ function  get_tab_name(evt){
+        //alert(evt)
+        var city_name = prompt("Enter the City name:")
+        //alert(city_name)
+ }
+
+  var div_ = document.createElement("div");
+ function openCity(evt, color) {
+ //alert(color)
+  event_ = evt.target;
+  //alert(event_)
+  var tab_id_ = event_.getAttribute("tab_id");
+  alert(tab_id_)
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tab_id_).style.display = "block";
+  evt.currentTarget.className += " active";
+
+    div_.getAttribute(tab_id_);
+    div_.innerHTML = "Drag and drop"
+    div_.setAttribute("style", "height: 200px; width:200px; background-color:"+ color +"; cursor:pointer; position:absolute");
+    var body_ = document.getElementById("demo");
+    body_.appendChild(div_);
+
+    var pos1=0; pos2=0; pos3=0; pos4=0
+    div_.onmousedown = function(e) {
+    // calculate the mouse cordinates
+         pos1 = e.clientX;
+         //alert(pos1)
+         pos2 = e.clientY;
+         //alert(pos2)
+
+         //calculate the position of the mouse
+         document.onmousemove = function(e) {
+             pos3 = pos1 - e.clientX;
+             pos4 = pos2 - e.clientY;
+
+             pos1 = e.clientX;
+             pos2 = e.clientY;
+
+
+         div_.style.left = (div_.offsetLeft - pos3) + "px";
+         div_.style.top = (div_.offsetTop - pos4) + "px";
+         };
+    div_.onmouseup = function(e) {
+        document.onmousemove = null;
+        document.onmousedown = null;
+
+    }
+}
+}
+
+</script>
+
+</body>
+</html>

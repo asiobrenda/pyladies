@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>BLOG</title>
+    {% endblock title %}
+    <link href="{% static 'blog/home7.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css"/>
+
+</head>
+<body>
+
+
+  <nav class="navbar">
+
+
+              <li class="name">Asio<li>
+          <ul>
+              {% block links %}
+              <li>Blog</li>
+              <li>Single Post</li>
+              <li>About</li>
+              <li>Contact</li>
+              {% endblock links %}
+          </ul>
+           <a href="https://twitter.com/home" target="_blank" class="twitter" id="twi">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" class="facebook" id="fb">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/brenda_5232/" target="_blank" class="instagram" id="insta">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/feed/" target="_blank" class="linkedin" id="lkd">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+
+  </nav>
+<br>
+<hr class="line">
+{% block head %}
+<div class="tech">
+    <h2>What matters in tech?</h2>
+    <p>I like to write stuff about tech, Hopefully you will like what i write.</p>
+</div>
+<br>
+<hr class="line1">
+{% endblock head%}
+
+{% for l in lang %}
+<div class="languages">
+    <h3>{{l.lang_name}}</h3>
+    <hr class="lang">
+    <div class="text">
+          {% for t in l.topic.all %}
+        <h4><a href="{% url 'blog:news' t.id%}" style="color:green; font-size:19px">{{t.title}}</a></h4>
+        <p><a href="{% url 'blog:news' t.id%}">{{t.text|safe}}</a></p>
+        <p style="font-size:13px; color:orange"> {{t.date}}</p>
+          {% endfor %}
+    </div>
+</div>
+{% endfor %}
+<br>
+{% block body %}
+
+<hr class="line2">
+ <div class="copyright">
+    <h4>© ASIO BRENDA</h4>
+  </div>
+
+{% endblock body %}
+</body>
+</html>

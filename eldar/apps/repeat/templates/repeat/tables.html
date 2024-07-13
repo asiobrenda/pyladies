@@ -1,0 +1,58 @@
+{% extends 'base_repeat.html' %}
+
+{% load static %}
+
+{% block toolbar %}
+<a class="active" href="{% url 'echen:Home' %}">Home</a>
+{% endblock toolbar %}
+
+
+{% block links %}
+ <link href="{% static 'styling/table1.css' %}"   rel="stylesheet">
+<link href="{% static 'styling/styles1.css' %}"   rel="stylesheet">
+{% endblock links %}
+
+{% block body %}
+<h2>{{model}}</h2>
+<h3> having two seprate links</h3>
+<br>
+
+<button>
+        <a href="{% url 'repeat:newmember' %}">Add member</a>
+
+
+      </button>
+<br>
+<br>
+<br>
+<table>
+ <tr>
+  <th>ID</th>
+  <th>NAME</th>
+  <th>GENDER</th>
+  <th>BIO</th>
+  <th>DATE</th>
+  <th>VIEW</th>
+  <th>UPDATE</th>
+  <th>DELETE</th>
+ </tr>
+
+{% for m in members %}
+<tr>
+<td>{{m.id}}</td>
+<td>{{m.member_name}}</td>
+<td>{{m.gender}}</td>
+<td>{{m.bio}}</td>
+<td>{{m.date_joined}}</td>
+ <td>
+  <a href="{% url 'repeat:view-member' m.id %}">VIEWS</a>
+ </td>
+ <td>
+  <a href="{% url 'repeat:update-member' m.id %}">Update</a>
+ </td>
+ <td>Delete</td>
+</tr>
+{% endfor %}
+
+</table>
+{% endblock body %}

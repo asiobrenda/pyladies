@@ -1,0 +1,20 @@
+{% extends 'base_hangman.html' %}
+{% load static %}
+
+{% block links %}
+<link href="{% static 'hangman/home.css' %}" rel="stylesheet">
+{% endblock links %}
+
+{% block body %}
+<h2>Solicit your friends to play the game!</h2>
+<br><br>
+
+<br>
+<form method="POST">
+    {% csrf_token %}
+<h3>Enter word:</h3>
+<input type="text" name="word" required="">
+<br><br>
+<button type="submit">Submit</button>
+</form>
+{% endblock %}

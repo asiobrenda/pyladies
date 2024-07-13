@@ -1,0 +1,22 @@
+table {
+    width: 65%;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  opacity: 0.6px;
+}
+
+th {
+    border: 1px solid black;
+    color: white;
+    background-color: blue;
+    padding: 10px;
+    font-weight: 700;
+
+}
+
+tr:hover {
+    cursor: pointer !important; /* Use !important to override other conflicting styles */
+}

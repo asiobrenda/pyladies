@@ -1,0 +1,49 @@
+{% extends 'base_repeat.html' %}
+
+{% load static %}
+
+{% block toolbar %}
+<a class="active" href="{% url 'echen:Home' %}">Home</a>
+{% endblock toolbar %}
+
+
+{% block links %}
+ <link href="{% static 'styling/styles1.css' %}"   rel="stylesheet">
+{% endblock links %}
+
+
+
+{% block body %}
+<br>
+<br>
+<br>
+<h3 style="margin-left: 20px">{{update1}} {{update2.member_name}}</h3>
+<br>
+
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <table>
+       <tr>
+           <th>NAME:</th> <td><input  name="fname" value={{update2.member_name}}  type="text"></td>
+       </tr>
+        <br>
+        <br>
+        <tr>
+           <th>GENDER:</th> <td><input  name="gender"  value={{update2.gender}} type="text"></td>
+       </tr>
+        <br>
+        <br>
+        <tr>
+           <th>BIO:</th> <td><input  name="bio" value={{update2.bio}} type="text"></td>
+       </tr>
+        <br>
+        <br>
+    </table>
+    <br>
+    <br>
+    <button>SUBMIT</button>
+
+</form>
+
+{% endblock body %}

@@ -1,0 +1,60 @@
+{% extends 'base_echen.html' %}
+
+{% load thumbnail %}
+
+{% load static %}
+
+{% block title %}
+<title>ECHEN1</title>
+{% endblock title %}
+
+{% block toolbar %}
+ <a class="active">Home</a>
+ <a href="{% url 'repeat:Repeat' %}">Repeat</a>
+{% endblock toolbar %}
+
+
+{% block links %}
+ <link href="{% static 'styling/table1.css' %}"   rel="stylesheet">
+{% endblock links %}
+
+{% block body %}
+ <h1>WELCOME TO MY HOME PAGE, html</h1>
+<br>
+<br>
+<br>
+<button>
+        <a href="{% url 'echen:create-client' %}">Add client</a>
+</button>
+<br>
+<br>
+<table>
+ <tr>
+  <th>ID</th>
+  <th>NAME</th>
+  <th>DESCRIPTION</th>
+  <th>IMAGE</th>
+  <th>VIEW</th>
+  <th>UPDATE</th>
+ </tr>
+
+{% for c in client %}
+<tr>
+<td>{{c.id}}</td>
+<td>{{c.name}}</td>
+<td>{{c.description}}</td>
+<td>
+ {% thumbnail c.image "5000x2000" crop as ci %}
+ <img src="{{ci.url}}" width="250px" height="150px">
+</td>
+ <td>
+  <a href="{% url 'echen:detail-client' c.id %}">VIEWS</a>
+ </td>
+ <td>
+  <a href="{% url 'echen:update-client' c.id %}">Update</a>
+ </td>
+</tr>
+{% endfor %}
+
+</table>
+{% endblock body %}

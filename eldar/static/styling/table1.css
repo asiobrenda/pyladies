@@ -1,0 +1,39 @@
+h2 {
+    color: purple;
+    font-size: 20px;
+    font-family: sans-serif;
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+th{
+  color: red;
+
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #DDD;
+}
+
+tr:hover {background-color: #D6EEEE;}
+
+
+button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 40%;
+}

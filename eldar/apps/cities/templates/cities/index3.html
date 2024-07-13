@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>CITIES</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body id="demo">
+ <h1 style="text-align: center;">{{cities}}</h1>
+<br>
+<br>
+
+
+<!--<script src="{% static 'js/sidenav2.js' %}"></script>-->
+<script src="{% static 'js/citiese58.js' %}"></script>
+<script src="{% static 'js/js.cookie.min.js' %}"></script>
+
+<script>
+
+var csrftoken = Cookies.get('csrftoken');
+        function csrfSafeMethod(method) {
+          // these HTTP methods do not require CSRF protection
+          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+          }
+        });
+
+var body = document.getElementById('demo');
+//alert(body)
+var url = "{% url 'cities:Tabs' %}";
+var get_data = "{% url 'cities:Get_data' %}";
+var delete_data = "{% url 'cities:Delete' %}";
+var save_url = "{% url 'cities:Save' %}";
+var save_btn = "{% url 'cities:Save_btn' %}";
+var saved_btn = "{% url 'cities:Saved_btn' %}";
+var saved_btn_code = "{% url 'cities:Saved_btn_code' %}";
+var get_saved_btn_code = "{% url 'cities:get_Saved_btn_code' %}";
+var delete_saved_btn= "{% url 'cities:delete_saved_btn' %}";
+
+
+var dic = {"body_": body, "url": url, "get_data": get_data, "delete_data": delete_data,
+"save_url": save_url, "save_btn": save_btn, "saved_btn": saved_btn, "saved_btn_code": saved_btn_code,
+"get_saved_btn_code": get_saved_btn_code, 'delete_saved_btn':delete_saved_btn}
+
+
+$(document).ready(function () {
+    //get_data()
+var manager = new Admin(dic);
+    manager.create_elements(dic);
+
+});
+
+</script>
+
+</body>
+</html>

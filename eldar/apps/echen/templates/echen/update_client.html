@@ -1,0 +1,29 @@
+{% extends 'base_echen.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>ECHEN1</title>
+{% endblock title %}
+
+{% block toolbar %}
+ <a class="active">Home</a>
+ <a href="{% url 'repeat:Repeat' %}">Repeat</a>
+{% endblock toolbar %}
+
+
+{% block body %}
+ <h1>CREATE CLIENT</h1>
+
+<br>
+<br>
+<form method="POST" enctype="multipart/form-data">
+ {% csrf_token %}
+
+ {{form.as_p}}
+<button>SUBMIT</button>
+</form>
+
+
+
+{% endblock body %}
